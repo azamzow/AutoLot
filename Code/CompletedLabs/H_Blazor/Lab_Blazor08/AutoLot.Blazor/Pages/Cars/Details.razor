@@ -1,0 +1,26 @@
+﻿@page "/cars/details/{Id:int}"
+@inherits CarBase
+
+@if (Entity == null)
+{
+    <div><em>Loading...</em></div>
+    <PageTitle>Vehicle Details</PageTitle>
+}
+else
+{
+    <PageTitle>@Entity.PetName Details</PageTitle>
+    <CarDetail CarInstance="Entity" />
+    <EditHelper Id="@Entity.Id" RouteStart="cars" />
+    <DeleteHelper Id="@Entity.Id" RouteStart="cars" />
+    <ListHelper RouteStart="cars" />
+}
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
+        Entity = await CarDataServiceInstance.GetEntityAsync(Id);
+        StateHasChanged();
+    }
+}

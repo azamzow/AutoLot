@@ -1,0 +1,19 @@
+﻿<h1>Details for @CarInstance.PetName</h1>
+<dl class="row">
+    <dt class="col-sm-2">Make</dt>
+    <dd class="col-sm-10">@CarInstance?.MakeNavigation?.Name</dd>
+    <dt class="col-sm-2">Color</dt>
+    <dd class="col-sm-10">@CarInstance?.Color</dd>
+    <dt class="col-sm-2">Pet Name</dt>
+    <dd class="col-sm-10">@CarInstance?.PetName</dd>
+    <dt class="col-sm-2">Price</dt>
+    <dd class="col-sm-10">@CarInstance?.Price</dd>
+    <dt class="col-sm-2">Date Built</dt>
+    <dd class="col-sm-10">@CarInstance?.DateBuilt?.ToLongDateString()</dd>
+    <dt class="col-sm-2">Is Drivable</dt>
+    <dd class="col-sm-10">@CarInstance?.IsDrivable</dd>
+</dl>
+
+@code {
+    [Parameter] [EditorRequired] public Car CarInstance { get; set; } = default!;
+}

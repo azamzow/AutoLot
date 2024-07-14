@@ -1,0 +1,88 @@
+﻿@page "/razor-syntax"
+<PageTitle>Razor Syntax</PageTitle>
+<title>Razor Syntax</title>
+<h3>Razor Syntax</h3>
+@for (int i = 0; i < 15; i++)
+{
+    @:Counter: @i
+    <br/>
+}
+@{
+    //Code Block
+    var foo = "Foo";
+    var bar = "Bar";
+    var htmlString = "<ul><li>one</li><li>two</li></ul>";
+}
+@foo
+<br/>
+@htmlString
+<br/>
+@((MarkupString)htmlString)
+<br/>
+@foo.@bar
+<br/>
+@foo.ToUpper()
+<br/>
+<hr/>
+@{
+    @:Straight Text
+    <div>Value:@_entity.Id</div>
+    <text>
+        Lines without HTML tag
+    </text>
+    <br/>
+}
+Email Address Handling:
+<br/>
+foo@foo.com
+<br/>
+@@foo
+<br/>
+test@foo
+<br/>
+test@(foo)
+<br/>
+@*
+  Multiline Comments
+  Hi.
+*@
+
+@functions {
+
+    public static IList<string> SortList(IList<string> strings)
+    {
+        var list = from s in strings orderby s select s;
+        return list.ToList();
+    }
+
+}
+
+@{
+    var myList = new List<string> { "C", "A", "Z", "F" };
+    var sortedList = SortList(myList);
+}
+@foreach (string s in sortedList)
+{
+    @s
+    @:&nbsp;
+}
+<hr/>
+<hr/>
+The Car named @_entity.PetName is a <span style="color: @_entity.Color">@_entity.Color</span> @_entity.MakeNavigation.Name
+<hr/>
+
+@code {
+
+    private readonly Car _entity = new Car
+    {
+        Id = 4,
+        Color = "Yellow",
+        PetName = "Hank",
+        MakeId = 1,
+        IsDrivable = true,
+        DateBuilt = new DateTime(2022, 01, 01),
+        Price = "$100,099.00",
+        MakeNavigation = new Make { Id = 1, Name = "BMW" }
+    };
+
+}

@@ -1,0 +1,27 @@
+﻿<NavLink class="nav-link ps-5" href="cars/index" Match="NavLinkMatch.All">
+    <span aria-hidden="true"></span> All
+</NavLink>
+@if (!_makes.Any())
+{
+    <div><em>Loading...</em></div>
+}
+else
+{
+    foreach (var m in _makes)
+    {
+        var link = $"cars/index/{m.Id}/{m.Name}";
+        <NavLink class="nav-link ps-5" href="@link" Match="NavLinkMatch.All">
+            <span aria-hidden="true"></span> @m.Name
+        </NavLink>
+    }
+}
+
+@code {
+    private List<Make> _makes = [];
+    [Inject]
+    private IMakeDataService MakeDataService { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        _makes = await MakeDataService.GetAllEntitiesAsync();
+    }
+}

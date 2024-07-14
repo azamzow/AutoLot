@@ -1,0 +1,36 @@
+﻿<h3>Car List</h3>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Make </th>
+        <th>Color</th>
+        <th>Pet Name</th>
+        <th>Price</th>
+        <th>DateBuilt</th>
+        <th>Is Drivable</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var c in Cars)
+    {
+        <tr>
+            <td>@c.MakeNavigation.Name</td>
+            <td>@c.Color</td>
+            <td>@c.PetName</td>
+            <td>@c.Price</td>
+            <td>@c.DateBuilt</td>
+            <td>@c.IsDrivable</td>
+            <td>
+                <EditHelper Id="@c.Id" RouteStart="cars"/>
+                <DetailsHelper Id="@c.Id" RouteStart="cars"/>
+                <DeleteHelper Id="@c.Id" RouteStart="cars"/>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@code {
+    [Parameter] [EditorRequired] public List<Car> Cars { get; set; }
+}

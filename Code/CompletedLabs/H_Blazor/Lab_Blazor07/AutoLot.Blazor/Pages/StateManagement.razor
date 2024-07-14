@@ -1,0 +1,48 @@
+﻿@page "/state-management"
+<PageTitle>State Management</PageTitle>
+<h1>State Management</h1>
+
+<StorageExample Title="Local Storage"
+                FieldDisplayName="localStorageData"
+                StorageType="local"
+                StorageService="LocalService"
+                OnDataReturnedCallback="@(async (value) => { await Task.Yield(); await ShowData(value); })">
+</StorageExample>
+<StorageExample Title="Session Storage"
+                FieldDisplayName="sessionStorageData"
+                StorageType="session"
+                StorageService="SessionService"
+                OnDataReturnedCallback="@(async (value) => { await Task.Yield(); await ShowData(value); })">
+</StorageExample>
+
+@code {
+    [Inject] private IJSRuntime JsRuntime { get; set; }
+
+    private IJSObjectReference _module;
+
+    //scoped to browser window
+    [Inject(Key = nameof(LocalStorageService))]
+    private IBrowserStorageService LocalService { get; set; }
+
+    //scoped to browser tab
+    [Inject(Key = nameof(SessionStorageService))]
+    private IBrowserStorageService SessionService { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _module = await JsRuntime.InvokeAsync<IJSObjectReference>
+                ("import", "./Pages/StateManagement.razor.js");
+        }
+    }
+
+    async Task ShowData(string message)
+    {
+        if (_module is not null)
+        {
+            await _module.InvokeVoidAsync("showStorageData", message);
+        }
+    }
+
+}

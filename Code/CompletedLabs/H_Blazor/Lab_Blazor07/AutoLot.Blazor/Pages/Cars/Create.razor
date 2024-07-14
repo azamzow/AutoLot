@@ -1,0 +1,37 @@
+﻿@page "/cars/create"
+@inherits CarBase
+<PageTitle>Create Vehicle</PageTitle>
+<h1>Create a New Car</h1>
+@if (Entity == null || !_makes.Any())
+{
+    <div><em>Loading...</em></div>
+}
+else
+{
+    <EditForm Model="Entity" OnSubmit="AddCarAsync">
+        <CarEdit CarInstance="Entity" Makes="_makes" />
+        <div class="pt-4">
+            <button class="btn btn-success">Create <i class="fa-solid fa-plus"></i></button>
+            | <ListHelper RouteStart="cars" />
+        </div>
+    </EditForm>
+}
+@code {
+    [Inject] private IMakeDataService _makeDataService { get; set; }
+    public async Task AddCarAsync(EditContext context)
+    {
+        if (context.Validate())
+        {
+            var car = await CarDataServiceInstance.AddEntityAsync(Entity);
+            NavManagerInstance.NavigateTo($"/cars/details/{car.Id}");
+        }
+    }
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
+        Entity = new Car();
+        _makes = await _makeDataService.GetAllEntitiesAsync();
+        StateHasChanged();
+    }
+    private List<Make> _makes = [];
+}

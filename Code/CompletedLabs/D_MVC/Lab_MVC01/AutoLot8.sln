@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{943C9206-BCC1-4EEF-8E56-9899DBC0913F}"
+	ProjectSection(SolutionItems) = preProject
+		..\createsolutionandprojects_MVC.cmd = ..\createsolutionandprojects_MVC.cmd
+		..\createsolutionandprojects_MVC.ps1 = ..\createsolutionandprojects_MVC.ps1
+		..\createsolutionandprojects_MVC.sh = ..\createsolutionandprojects_MVC.sh
+		..\..\global.json = ..\..\global.json
+		MVC_Lab1.txt = MVC_Lab1.txt
+		..\..\nuget.config = ..\..\nuget.config
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoLot.Services", "AutoLot.Services\AutoLot.Services.csproj", "{C7277B36-E6CC-4EB4-B619-7A8DF23D79B8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoLot.Mvc", "AutoLot.Mvc\AutoLot.Mvc.csproj", "{739F479B-D833-492F-B59B-A00252A41706}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoLot.Models", "..\..\B_EFCore\Lab_EF08\AutoLot.Models\AutoLot.Models.csproj", "{440DC3A6-BDC4-44E4-AE7F-998836BEBE84}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoLot.Dal", "..\..\B_EFCore\Lab_EF08\AutoLot.Dal\AutoLot.Dal.csproj", "{D8C31FED-52BC-4BAA-9A46-8DEE46BF2E04}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoLot.Dal.Tests", "..\..\B_EFCore\Lab_EF08\AutoLot.Dal.Tests\AutoLot.Dal.Tests.csproj", "{56036F8D-6964-47BC-87B0-9B8463813E57}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7277B36-E6CC-4EB4-B619-7A8DF23D79B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7277B36-E6CC-4EB4-B619-7A8DF23D79B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7277B36-E6CC-4EB4-B619-7A8DF23D79B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7277B36-E6CC-4EB4-B619-7A8DF23D79B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{739F479B-D833-492F-B59B-A00252A41706}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{739F479B-D833-492F-B59B-A00252A41706}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{739F479B-D833-492F-B59B-A00252A41706}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{739F479B-D833-492F-B59B-A00252A41706}.Release|Any CPU.Build.0 = Release|Any CPU
+		{440DC3A6-BDC4-44E4-AE7F-998836BEBE84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{440DC3A6-BDC4-44E4-AE7F-998836BEBE84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{440DC3A6-BDC4-44E4-AE7F-998836BEBE84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{440DC3A6-BDC4-44E4-AE7F-998836BEBE84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8C31FED-52BC-4BAA-9A46-8DEE46BF2E04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8C31FED-52BC-4BAA-9A46-8DEE46BF2E04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8C31FED-52BC-4BAA-9A46-8DEE46BF2E04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8C31FED-52BC-4BAA-9A46-8DEE46BF2E04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56036F8D-6964-47BC-87B0-9B8463813E57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56036F8D-6964-47BC-87B0-9B8463813E57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56036F8D-6964-47BC-87B0-9B8463813E57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56036F8D-6964-47BC-87B0-9B8463813E57}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6C41FC1-2896-409D-BD84-A3E4CDA105F6}
+	EndGlobalSection
+EndGlobal

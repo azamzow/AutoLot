@@ -1,0 +1,21 @@
+﻿@page "/privacy"
+@page "/privacy/{RouteParameter}"
+<PageTitle>Privacy Policy</PageTitle>
+<title>Privacy Policy</title>
+<p>Use this page to detail your site's privacy policy.</p>
+@if (!string.IsNullOrEmpty(RouteParameter))
+{
+    <h3>Route Parameter: @RouteParameter</h3>
+}
+@if (!string.IsNullOrEmpty(QueryStringParameter))
+{
+    <h3>Query String Parameter: @QueryStringParameter</h3>
+}
+@code {
+    [Parameter]
+    public string RouteParameter { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "QueryStringParam")]
+    public string QueryStringParameter { get; set; }
+}
