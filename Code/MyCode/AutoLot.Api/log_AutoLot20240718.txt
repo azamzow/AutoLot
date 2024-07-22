@@ -1,0 +1,6 @@
+[24-07-18 13:22:05
+		Error]AutoLot.Api:AutoLot.Api.Controllers.ValuesController
+Message:Test error
+in method TestLogging
+		at C:\Users\azamzow\Desktop\Projects\VSLive_July_2024\Code\MyCode\AutoLot.Api\Controllers\ValuesController.cs:12
+

@@ -1,0 +1,73 @@
+﻿@page "/validation"
+@implements IDisposable
+<PageTitle>Validation</PageTitle>
+<h3>Validation</h3>
+<div class="row">
+	<EditForm EditContext="@editContext" OnValidSubmit="ProcessOrder" OnInvalidSubmit="StopOrder">
+		<DataAnnotationsValidator />
+		<ValidationSummary Model="_entity" />
+		<div>
+			<label class="col-form-label" for="id">Id</label>
+			<InputNumber class="form-control" @bind-Value="_entity.Id" />
+			<ValidationMessage For="()=>_entity.Id" />
+		</div>
+		<div>
+			<label class="col-form-label" for="stockQuantity">Stock Quantity</label>
+			<InputNumber class="form-control" @bind-Value="_entity.StockQuantity" />
+			<ValidationMessage For="()=>_entity.StockQuantity" />
+		</div>
+		<div>
+			<label class="col-form-label" for="itemId">ItemId</label>
+			<InputNumber class="form-control" @bind-Value="_entity.ItemId" />
+			<ValidationMessage For="()=>_entity.ItemId" />
+		</div>
+		<div>
+			<label class="col-form-label" for="quantity">Quantity</label>
+			<InputNumber class="form-control" @bind-Value="_entity.Quantity" />
+			<ValidationMessage For="()=>_entity.Quantity" />
+		</div>
+		<button class="mt-3" type="submit" disabled="@formInvalid">Process Order 1</button>
+		<button class="mt-3" type="submit">Process Order 2</button>
+	</EditForm>
+	<div class="mt-3 @messageClass">@message</div>
+</div>
+
+@code {
+	private bool formInvalid = true;
+	EditContext editContext;
+	private AddToCartViewModel _entity;
+	private string message = "";
+	private string messageClass = "";
+	protected override void OnInitialized()
+	{
+		_entity = new AddToCartViewModel();
+		editContext = new EditContext(_entity);
+		editContext.OnFieldChanged += HandleFieldChanged;
+	}
+	private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+	{
+		if (editContext is null)
+		{
+			return;
+		}
+		formInvalid = !editContext.Validate();
+		StateHasChanged();
+	}
+	public void Dispose()
+	{
+		if (editContext is not null)
+		{
+			editContext.OnFieldChanged -= HandleFieldChanged;
+		}
+	}
+	public void ProcessOrder()
+	{
+		message = "Order Processed";
+		messageClass = "alert alert-success";
+	}
+	public void StopOrder()
+	{
+		message = "Order Stopped";
+		messageClass = "alert alert-danger";
+	}
+}

@@ -1,0 +1,6 @@
+[24-07-17 14:18:57
+		Error]AutoLot.Web:AutoLot.Web.Pages.IndexModel
+Message:Test Error
+in method OnGet
+		at C:\Users\azamzow\Desktop\Projects\VSLive_July_2024\Code\MyCode\AutoLot.Web\Pages\Index.cshtml.cs:10
+

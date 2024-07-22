@@ -1,0 +1,33 @@
+﻿@page "/make-validation"
+<PageTitle>Make Validation</PageTitle>
+<h3>Make Validation</h3>
+<div class="row">
+	<EditForm Model="_makeEntity" OnValidSubmit="ProcessOrder" OnInvalidSubmit="StopOrder">
+		<DataAnnotationsValidator />
+		<ValidationSummary />
+		<div>
+			<label class="col-form-label" for="id">Id</label>
+			<InputNumber class="form-control" @bind-Value="_makeEntity.Id" />
+			<ValidationMessage For="()=>_makeEntity.Id" />
+		</div>
+		<div>
+			<label class="col-form-label" for="name">Make Name</label>
+			<InputText class="form-control" @bind-Value="_makeEntity.Name" />
+			<ValidationMessage For="()=>_makeEntity.Name" />
+		</div>
+		<div class="pt-4">
+			<button>Process Make</button>
+		</div>
+	</EditForm>
+</div>
+@code {
+	private Make _makeEntity = new Make { Id = 1, Name = "VW" };
+	public void ProcessOrder(EditContext context)
+	{
+		Console.WriteLine($"Make is valid: {context.Validate()}");
+	}
+	public void StopOrder(EditContext context)
+	{
+		Console.WriteLine($"Make is invalid {string.Join(",", context.GetValidationMessages())}");
+	}
+}

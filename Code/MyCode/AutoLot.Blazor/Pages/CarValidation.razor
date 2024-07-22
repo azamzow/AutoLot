@@ -1,0 +1,77 @@
+﻿@page "/car-validation"
+<PageTitle>Car Validation</PageTitle>
+<h3>Car Validation</h3>
+<div class="row">
+	<EditForm Model="_entity" OnValidSubmit="ProcessOrder" OnInvalidSubmit="StopOrder">
+		<DataAnnotationsValidator />
+		<ValidationSummary />
+		<div>
+			<label class="col-form-label" for="id">Id</label>
+			<InputNumber class="form-control" @bind-Value="_entity.Id" />
+			<ValidationMessage For="()=>_entity.Id" />
+		</div>
+		<div>
+			<label class="col-form-label" for="petName">Pet Name</label>
+			<InputText class="form-control" @bind-Value="_entity.PetName" />
+			<ValidationMessage For="()=>_entity.PetName" />
+		</div>
+		<div>
+			<label class="col-form-label" for="name">Make Name</label>
+			<InputText class="form-control" @bind-Value="_entity.MakeNavigation.Name" />
+			<ValidationMessage For="()=>_entity.MakeNavigation.Name" />
+		</div>
+		<div>
+			<label class="col-form-label" for="quantity">Make</label>
+			<InputSelect class="form-control" @bind-Value="_entity.MakeId">
+				@foreach (var item in _makes)
+				{
+					<option value="@item.Id">@item.Name</option>
+				}
+			</InputSelect>
+			<ValidationMessage For="()=>_entity.MakeId" />
+		</div>
+		<div class="pt-4">
+			<button>Process Car</button>
+		</div>
+	</EditForm>
+	<ConfirmDialog Show="_showAlert" OnOk="@(() => _showAlert = false)">
+		<ChildContent>
+			<h1>This will save the content</h1>
+			<p>Click OK when ready.</p>
+		</ChildContent>
+	</ConfirmDialog>
+</div>
+
+@code {
+	private bool _showAlert = false;
+	private Car _entity = new Car
+		{
+			Id = 4,
+			Color = "Yellow",
+			PetName = "Hank",
+			MakeId = 1,
+			IsDrivable = true,
+			DateBuilt = new DateTime(2022, 01, 01),
+			Price = "$100,099.00",
+			MakeNavigation = new Make { Id = 1, Name = "BMW" }
+		};
+	private Make _makeEntity = new Make { Id = 1, Name = "VW" };
+	private List<Make> _makes =>
+	[
+	new() { Id = 1, Name = "VW" },
+new() { Id = 2, Name = "Ford" },
+new() { Id = 3, Name = "Saab" },
+new() { Id = 4, Name = "Yugo" },
+new() { Id = 5, Name = "BMW" },
+new() { Id = 6, Name = "Pinto" }
+	];
+	public void ProcessOrder(EditContext context)
+	{
+		Console.WriteLine($"$Car is valid: {context.Validate()}");
+		_showAlert = true;
+	}
+	public void StopOrder(EditContext context)
+	{
+		Console.WriteLine($"Car is invalid {string.Join(",", context.GetValidationMessages())}");
+	}
+}

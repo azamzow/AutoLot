@@ -1,0 +1,24 @@
+[24-07-18 14:36:27
+		Information]AutoLot.Web:System.Net.Http.HttpClient.IMakeApiServiceWrapper.LogicalHandler
+Message:Start processing HTTP request "GET" "https://localhost:5011/api/v1/Makes?v=1.0"
+in method 
+		at :
+
+[24-07-18 14:36:27
+		Information]AutoLot.Web:System.Net.Http.HttpClient.IMakeApiServiceWrapper.ClientHandler
+Message:Sending HTTP request "GET" "https://localhost:5011/api/v1/Makes?v=1.0"
+in method 
+		at :
+
+[24-07-18 14:36:28
+		Information]AutoLot.Web:System.Net.Http.HttpClient.IMakeApiServiceWrapper.ClientHandler
+Message:Received HTTP response headers after 395.1108ms - 200
+in method 
+		at :
+
+[24-07-18 14:36:28
+		Information]AutoLot.Web:System.Net.Http.HttpClient.IMakeApiServiceWrapper.LogicalHandler
+Message:End processing HTTP request after 435.8095ms - 200
+in method 
+		at :
+
